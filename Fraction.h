@@ -13,25 +13,26 @@ public:
 	Fraction(int);
 	Fraction(int, int);
 
-	static Fraction ZERO;
+	static const Fraction ZERO;
 
-	Fraction operator*(Fraction&);
-	Fraction operator*(int& integer);
+	Fraction operator*(const Fraction&);
+	Fraction operator*(const int& integer);
 
-	Fraction operator/(Fraction&);
-	Fraction operator/(int& integer);
+	Fraction operator/(const Fraction&);
+	Fraction operator/(const int& integer);
 
-	friend std::ostream& operator<<(std::ostream &strm, const Fraction &fraction) {
-	  return strm << fraction.dividend << "/" << fraction.divisor;
+	const std::string toString();
+
+	friend std::ostream& operator<<(std::ostream &strm, Fraction &fraction) {
+	  return strm << fraction.toString();
 	}
 
-	std::string toString();
 
 private:
 	int divisor;
 	int dividend;
 
-	void checkDivisionByZero(Fraction&, int);
+	void checkDivisionByZero(const Fraction&, int);
 
 };
 

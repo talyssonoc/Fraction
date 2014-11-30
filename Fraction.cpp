@@ -15,33 +15,33 @@ Fraction::Fraction(int dividend, int divisor) {
 	this->divisor = divisor;
 }
 
-Fraction Fraction::ZERO(0);
+const Fraction Fraction::ZERO(0);
 
-Fraction Fraction::operator*(Fraction& fraction) {
+Fraction Fraction::operator*(const Fraction& fraction) {
 	return Fraction(this->dividend * fraction.dividend,
 					this->divisor * fraction.divisor);
 }
 
-Fraction Fraction::operator*(int& integer) {
+Fraction Fraction::operator*(const int& integer) {
 	return Fraction(this->dividend * integer,
 					this->divisor);
 }
 
-Fraction Fraction::operator/(Fraction& fraction) {
+Fraction Fraction::operator/(const Fraction& fraction) {
 	this->checkDivisionByZero(fraction, fraction.dividend);
 
 	return Fraction(this->dividend * fraction.divisor,
 					this->divisor * fraction.dividend);
 }
 
-Fraction Fraction::operator/(int& integer) {
+Fraction Fraction::operator/(const int& integer) {
 	this->checkDivisionByZero(Fraction::ZERO, integer);
 
 	return Fraction(this->dividend,
 					this->divisor * integer);
 }
 
-std::string Fraction::toString() {
+const std::string Fraction::toString() {
 	std::stringstream asStream;
 
 	asStream << this->dividend << "/" << this->divisor;
@@ -49,14 +49,16 @@ std::string Fraction::toString() {
 	return asStream.str();
 }
 
-void Fraction::checkDivisionByZero(Fraction& fraction, int possibleZero) {
+void Fraction::checkDivisionByZero(const Fraction& fraction, int possibleZero) {
+
 	if(possibleZero == 0) {
 		std::stringstream cause;
-		cause << "Error: Division by zero ["
+		cause << "Error: Division by zero";
+		/*	<< "["
 			<< this->toString()
 			<< " / "
 			<< fraction.toString()
-			<< "]";
+			<< "]"*/;
 
 		throw FractionException(cause.str());
 	}
