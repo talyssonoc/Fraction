@@ -28,5 +28,20 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 
+	Fraction result5 = f1 + f2;
+	std::cout << f1 << " + " << f2 << " = " << result5 << std::endl;
+
+	int i4 = 7;
+	Fraction result6 = f1 + i4;
+	std::cout << f1 << " + " << i4 << " = " << result6 << std::endl;
+
+	Fraction result7 = f1 - f2;
+	std::cout << f1 << " - " << f2 << " = " << result7 << std::endl;
+
+	int i5 = 11;
+	Fraction result8 = f1 - i5;
+	std::cout << f1 << " - " << i4 << " = " << result8 << std::endl;
+
+
 	return 0;
 }

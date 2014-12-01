@@ -38,23 +38,34 @@
 
 # TODO
 
+* [ ] Fraction(float) constructor
 * [x] Multiplication by Fraction
 * [x] Multiplication by int
 * [x] Division by Fracton
 * [x] Division by int
-* [ ] Sum by Fraction
-* [ ] Sum by int
+* [x] Sum by Fraction
+* [x] Sum by int
 * [ ] Mod by Fraction
 * [ ] Mod by int
-* [ ] Subtraction by Fraction
-* [ ] Subtraction by int
-* [ ] Fraction(float) constructor
-* [ ] PI constant
-* [ ] E constant
+* [x] Subtraction by Fraction
+* [x] Subtraction by int
+* [ ] Negative
+* [ ] Normalizer (reduce fraction)
+* [ ] > with Fraction
+* [ ] > with Integer
+* [ ] < with Fraction
+* [ ] < with Integer
+* [ ] >= with Fraction
+* [ ] >= with Integer
+* [ ] <= with Fraction
+* [ ] <= with Integer
+* [ ] == with Fraction
+* [ ] == with Integer
+* [ ] != with Fraction
+* [ ] != with Integer
+* [ ] Inverse of operators (integer + Fraction <=> Fraction + integer)
+* [x] PI constant (http://turner.faculty.swau.edu/mathematics/materialslibrary/pi/pirat.html)
+* [x] MAX_VALUE constant
+* [x] MIN_VALUE constant
 * [x] Zero constant
 * [x] One constant
-
-# Idea for mod:
-
-Execute the division and check if dividend
-is multiple of divisor
