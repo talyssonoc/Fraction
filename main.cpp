@@ -42,6 +42,8 @@ int main() {
 	Fraction result8 = f1 - i5;
 	std::cout << f1 << " - " << i4 << " = " << result8 << std::endl;
 
+	Fraction result9 = -f1;
+	std::cout << "-" << f1 << " = " << result9 << std::endl;
 
 	return 0;
 }

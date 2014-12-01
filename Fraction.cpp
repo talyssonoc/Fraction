@@ -26,6 +26,11 @@ const Fraction Fraction::MAX_VALUE(INT_MAX);
 const Fraction Fraction::MIN_VALUE(INT_MIN);
 const Fraction Fraction::PI(3126535, 995207);
 
+Fraction Fraction::operator-() {
+	return Fraction(-this->dividend,
+					this->divisor);
+}
+
 Fraction Fraction::operator*(const Fraction& fraction) {
 	return Fraction(this->dividend * fraction.dividend,
 					this->divisor * fraction.divisor);

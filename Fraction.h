@@ -21,6 +21,8 @@ public:
 	const static Fraction MIN_VALUE;
 	const static Fraction PI;
 
+	Fraction operator-();
+
 	Fraction operator+(const Fraction&);
 	Fraction operator+(const int& integer);
 
