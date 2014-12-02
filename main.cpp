@@ -43,7 +43,66 @@ int main() {
 	std::cout << f1 << " - " << i4 << " = " << result8 << std::endl;
 
 	Fraction result9 = -f1;
-	std::cout << "-" << f1 << " = " << result9 << std::endl;
+	std::cout << "-(" << f1 << ") = " << result9 << std::endl;
+
+	if(f1 == f2) {
+		std::cout << f1 << " == " << f2 << std::endl;
+	}
+	else {
+		std::cout << f1 << " != " << f2 << std::endl;
+	}
+
+	Fraction f3(4, 8);
+	if(f1 == f3) {
+		std::cout << f1 << " == " << f3 << std::endl;
+	}
+	else {
+		std::cout << f1 << " != " << f3 << std::endl;
+	}
+
+	Fraction f4(16, 2);
+	int i6 = 8;
+	if(f4 == i6) {
+		std::cout << f4 << " == " << i6 << std::endl;
+	}
+	else {
+		std::cout << f4 << " != " << i6 << std::endl;
+	}
+
+	if(f1 > f2) {
+		std::cout << f1 << " > " << f2 << std::endl;
+	}
+	else {
+		std::cout << f1 << " <= " << f2 << std::endl;
+	}
+
+	if(f1 > f1) {
+		std::cout << f1 << " > " << f1 << std::endl;
+	}
+	else {
+		std::cout << f1 << " <= " << f1 << std::endl;
+	}
+
+	if(f2 < f3) {
+		std::cout << f2 << " < " << f3 << std::endl;
+	}
+	else {
+		std::cout << f2 << " >= " << f3 << std::endl;
+	}
+
+	if(f3 >= f4) {
+		std::cout << f3 << " >= " << f4 << std::endl;
+	}
+	else {
+		std::cout << f3 << " < " << f4 << std::endl;
+	}
+
+	if(f4 <= f1) {
+		std::cout << f4 << " <= " << f1 << std::endl;
+	}
+	else {
+		std::cout << f4 << " > " << f1 << std::endl;
+	}
 
 	return 0;
 }

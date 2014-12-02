@@ -68,21 +68,24 @@
 * [x] Subtraction by int
 * [x] Negative
 * [ ] Normalizer (reduce fraction)
-* [ ] > with Fraction
-* [ ] > with Integer
-* [ ] < with Fraction
-* [ ] < with Integer
-* [ ] >= with Fraction
-* [ ] >= with Integer
-* [ ] <= with Fraction
-* [ ] <= with Integer
-* [ ] == with Fraction
-* [ ] == with Integer
-* [ ] != with Fraction
-* [ ] != with Integer
+* [x] == with Fraction
+* [x] == with Integer
+* [?] == with Float
+* [x] != with Fraction
+* [x] != with Integer
+* [?] != with Float
+* [x] > with Fraction
+* [x] > with Integer
+* [x] < with Fraction
+* [x] < with Integer
+* [x] >= with Fraction
+* [x] >= with Integer
+* [x] <= with Fraction
+* [x] <= with Integer
 * [ ] Inverse of operators (integer + Fraction <=> Fraction + integer)
 * [x] PI constant (http://turner.faculty.swau.edu/mathematics/materialslibrary/pi/pirat.html)
 * [x] MAX_VALUE constant
 * [x] MIN_VALUE constant
-* [x] Zero constant
-* [x] One constant
+* [x] Constant ZERO
+* [x] Constant ONE
+* [x] Change names from dividend/divisor to numerator/denominator

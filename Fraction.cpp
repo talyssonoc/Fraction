@@ -1,23 +1,23 @@
 #include "Fraction.h"
 
 Fraction::Fraction() {
-	this->dividend = 0;
-	this->divisor = 1;
+	this->numerator = 0;
+	this->denominator = 1;
 }
 
-Fraction::Fraction(int dividend) {
-	this->dividend = dividend;
-	this->divisor = 1;
+Fraction::Fraction(int numerator) {
+	this->numerator = numerator;
+	this->denominator = 1;
 }
 
-Fraction::Fraction(int dividend, int divisor) {
-	if(divisor < 0) {
-		dividend = -dividend;
-		divisor = -divisor;	
+Fraction::Fraction(int numerator, int denominator) {
+	if(denominator < 0) {
+		numerator = -numerator;
+		denominator = -denominator;	
 	}
 
-	this->dividend = dividend;
-	this->divisor = divisor;
+	this->numerator = numerator;
+	this->denominator = denominator;
 }
 
 const Fraction Fraction::ZERO(0);
@@ -27,69 +27,107 @@ const Fraction Fraction::MIN_VALUE(INT_MIN);
 const Fraction Fraction::PI(3126535, 995207);
 
 Fraction Fraction::operator-() {
-	return Fraction(-this->dividend,
-					this->divisor);
+	return Fraction(-this->numerator,
+					this->denominator);
+}
+
+Fraction Fraction::operator+(const Fraction& fraction) {
+	return this->commonOperation((*this), fraction, std::plus<int>());
+}
+
+Fraction Fraction::operator+(const int& integer) {
+	return this->commonOperation((*this), integer, std::plus<int>());	
+}
+
+Fraction Fraction::operator-(const Fraction& fraction) {
+	return this->commonOperation((*this), fraction, std::minus<int>());
+}
+
+Fraction Fraction::operator-(const int& integer) {
+	return this->commonOperation((*this), integer, std::minus<int>());
 }
 
 Fraction Fraction::operator*(const Fraction& fraction) {
-	return Fraction(this->dividend * fraction.dividend,
-					this->divisor * fraction.divisor);
+	return Fraction(this->numerator * fraction.numerator,
+					this->denominator * fraction.denominator);
 }
 
 Fraction Fraction::operator*(const int& integer) {
-	return Fraction(this->dividend * integer,
-					this->divisor);
+	return Fraction(this->numerator * integer,
+					this->denominator);
 }
 
 Fraction Fraction::operator/(const Fraction& fraction) {
-	this->checkDivisionByZero(fraction, fraction.dividend);
+	this->checkDivisionByZero(fraction, fraction.numerator);
 
-	return Fraction(this->dividend * fraction.divisor,
-					this->divisor * fraction.dividend);
+	return Fraction(this->numerator * fraction.denominator,
+					this->denominator * fraction.numerator);
 }
 
 Fraction Fraction::operator/(const int& integer) {
 	this->checkDivisionByZero(Fraction::ZERO, integer);
 
-	return Fraction(this->dividend,
-					this->divisor * integer);
+	return Fraction(this->numerator,
+					this->denominator * integer);
 }
 
-Fraction Fraction::operator+(const Fraction& fraction) {
-	int lcm = this->lcm(this->divisor, fraction.divisor);
-
-	return Fraction((this->dividend * (lcm / this->divisor)) +
-					(fraction.dividend * (lcm / fraction.divisor)),
-					lcm);
+bool Fraction::operator==(const Fraction& fraction) {
+	return this->comparison((*this), fraction, std::equal_to<int>());
 }
 
-Fraction Fraction::operator+(const int& integer) {
-	
-	return Fraction(this->dividend +
-					(integer * this->divisor),
-					this->divisor);
+bool Fraction::operator==(const int& integer) {
+	return this->comparison((*this), integer, std::equal_to<int>());
 }
 
-Fraction Fraction::operator-(const Fraction& fraction) {
-	int lcm = this->lcm(this->divisor, fraction.divisor);
-
-	return Fraction((this->dividend * (lcm / this->divisor)) -
-					(fraction.dividend * (lcm / fraction.divisor)),
-					lcm);
+bool Fraction::operator!=(const Fraction& fraction) {
+	return this->comparison((*this), fraction, std::not_equal_to<int>());
 }
 
-Fraction Fraction::operator-(const int& integer) {
-	
-	return Fraction(this->dividend -
-					(integer * this->divisor),
-					this->divisor);
+bool Fraction::operator!=(const int& integer) {
+	return this->comparison((*this), integer, std::not_equal_to<int>());
+}
+
+bool Fraction::operator>(const Fraction& fraction) {
+	return this->comparison((*this), fraction, std::greater<int>());
+}
+
+bool Fraction::operator>(const int& integer) {
+	return this->comparison((*this), integer, std::greater<int>());
+}
+
+bool Fraction::operator<(const Fraction& fraction) {
+	return this->comparison((*this), fraction, std::less<int>());
+}
+
+bool Fraction::operator<(const int& integer) {
+	return this->comparison((*this), integer, std::less<int>());
+}
+
+bool Fraction::operator>=(const Fraction& fraction) {
+	return this->comparison((*this), fraction, std::greater_equal<int>());
+}
+
+bool Fraction::operator>=(const int& integer) {
+	return this->comparison((*this), integer, std::greater_equal<int>());
+}
+
+bool Fraction::operator<=(const Fraction& fraction) {
+	return this->comparison((*this), fraction, std::less_equal<int>());
+}
+
+bool Fraction::operator<=(const int& integer) {
+	return this->comparison((*this), integer, std::less_equal<int>());
 }
 
 double Fraction::getDoubleValue() const {
-	return this->dividend/(double)this->divisor;
+	return this->numerator/(double)this->denominator;
 }
 
-int Fraction::gcd(int a, int b) {
+float Fraction::getFloatValue() const {
+	return this->numerator/(float)this->denominator;
+}
+
+int Fraction::gcd(int a, int b) const {
     for (;;) {
         
         if (a == 0) {
@@ -106,16 +144,16 @@ int Fraction::gcd(int a, int b) {
     }
 }
 
-int Fraction::lcm(int a, int b) {
-    int temp = this->gcd(a, b);
+int Fraction::lcm(int a, int b) const {
+    int gcd = this->gcd(a, b);
 
-    return temp ? (a / temp * b) : 0;
+    return gcd ? (a / gcd * b) : 0;
 }
 
 const std::string Fraction::toString() const {
 	std::stringstream asStream;
 
-	asStream << this->dividend << "/" << this->divisor;
+	asStream << this->numerator << "/" << this->denominator;
 
 	return asStream.str();
 }
