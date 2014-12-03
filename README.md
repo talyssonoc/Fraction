@@ -62,8 +62,8 @@
 * [x] Division by int
 * [x] Sum by Fraction
 * [x] Sum by int
-* [ ] Mod by Fraction
-* [ ] Mod by int
+* [x] Mod by Fraction
+* [x] Mod by int
 * [x] Subtraction by Fraction
 * [x] Subtraction by int
 * [x] Negative

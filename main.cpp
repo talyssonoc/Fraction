@@ -51,6 +51,21 @@ int main() {
 	Fraction result11(3.141592653589f);
 	std::cout << "PI = " << result11 << std::endl;
 
+	Fraction result12(5); 
+	Fraction result13(2);
+	int mod1 = result12 % result13;
+	std::cout << result12 << " \% " << result13 << " = " << mod1 << std::endl;
+
+	int mod2 = f2 % f1;
+	Fraction result14 = f2 / f1;
+	std::cout << f2 << " / " << f1 << " = " << result14 << std::endl;
+	std::cout << f2 << " \% " << f1 << " = " << mod2 << std::endl;
+
+	int mod3 = result12 % 10;
+	Fraction result15 = result12 / 10;
+	std::cout << result12 << " / " << 10 << " = " << result15 << std::endl;
+	std::cout << result12 << " \% " << 10 << " = " << mod3 << std::endl;
+
 	if(f1 == f2) {
 		std::cout << f1 << " == " << f2 << std::endl;
 	}

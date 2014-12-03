@@ -40,6 +40,9 @@ public:
 	Fraction operator/(const Fraction&);
 	Fraction operator/(const int&);
 
+	int operator%(const Fraction&);
+	int operator%(const int&);
+
 	// Comparators
 	bool operator==(const Fraction&);
 	bool operator==(const int&);

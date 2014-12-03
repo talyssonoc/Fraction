@@ -134,6 +134,26 @@ Fraction Fraction::operator/(const int& integer) {
 	return result;
 }
 
+int Fraction::operator%(const Fraction& fraction) {
+	Fraction division = (*this) / fraction;
+
+	int integer = (int) division.getFloatValue();
+
+	integer = division.denominator * integer;
+
+	return division.numerator - integer; 
+}
+
+int Fraction::operator%(const int& integer) {
+	Fraction division = (*this) / integer;
+
+	int integerPart = (int) division.getFloatValue();
+
+	integerPart = division.denominator * integerPart;
+
+	return division.numerator - integerPart; 
+}
+
 bool Fraction::operator==(const Fraction& fraction) {
 	return this->comparison((*this), fraction, std::equal_to<int>());
 }
