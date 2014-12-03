@@ -16,6 +16,7 @@ public:
 	Fraction();
 	Fraction(int);
 	Fraction(int, int);
+	Fraction(float);
 
 	const static Fraction ZERO;
 	const static Fraction ONE;
@@ -68,14 +69,17 @@ public:
 	}
 
 private:
+	// numerator/denominator
 	int numerator;
 	int denominator;
 
-	// numerator/denominator
 
+	// Utils methods
 	void checkDivisionByZero(const Fraction&, int) const;
 	int gcd(int, int) const;
 	int lcm(int, int) const;
+	int mantissaToInteger(float, int&) const;
+	void simplify();
 
 	// Generic functional comparator
 	template <typename ComparisonOperator>
@@ -113,22 +117,30 @@ private:
 
 		int lcm = f1.lcm(f1.denominator, f2.denominator);
 
-		return Fraction(
+		Fraction fraction(
 				operation(
 					f1.numerator * (lcm / f1.denominator),
 					f2.numerator * (lcm / f2.denominator)
 				), lcm);
+
+		fraction.simplify();
+
+		return fraction;
 	}
 
 	template<typename PlusMinusOperator>
 	Fraction commonOperation(const Fraction& f1,
 							 const int& i1,
 							 PlusMinusOperator operation) {
-		return Fraction(
+		Fraction fraction(
 				operation(
 					f1.numerator,
 					i1 * f1.denominator
 				), f1.denominator);
+
+		fraction.simplify();
+
+		return fraction;
 	}
 
 };

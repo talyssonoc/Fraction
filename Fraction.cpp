@@ -18,6 +18,53 @@ Fraction::Fraction(int numerator, int denominator) {
 
 	this->numerator = numerator;
 	this->denominator = denominator;
+
+	this->simplify();
+}
+
+/**
+ *	Explanation:
+ *
+ *	We get the mantissa (mt), the exponent (n)
+ *	that represents the float number and the
+ *	number of decimal digits of the mantissa (m)
+ *
+ * 	So we turn it in the form:
+ *
+ * 	number = ((10^m * mt) * 2^n) / (10 ^ m)
+ *
+ * So, before calculate the exponentiations,
+ * we simplify z = (2^n)/(10^m) by turning it doing:
+ * 
+ * h = min(n, m)
+ *
+ * z = (2^(n-h))/(5^h * 10^(m-h))
+ *
+ * Then we'll have the numerator and the denominator,
+ * that we simplify by dividing them by them GCD.
+ * 
+ */
+Fraction::Fraction(float number) {
+	float mantissa;
+
+	int exponent,
+		numerator,
+		denominator,
+		h;
+
+	// Mantissa of the floating number
+	mantissa = frexp(number , &exponent);
+
+	// E.g. turns 0.123 into 123
+	numerator = this->mantissaToInteger(mantissa, denominator);
+
+	h = min(denominator, exponent);
+
+	// Simplify (2^n)/(10^m)
+	this->numerator = numerator * pow(2, exponent - h);
+	this->denominator = pow(5, h) * pow(10, denominator - h);
+
+	this->simplify();
 }
 
 const Fraction Fraction::ZERO(0);
@@ -48,27 +95,43 @@ Fraction Fraction::operator-(const int& integer) {
 }
 
 Fraction Fraction::operator*(const Fraction& fraction) {
-	return Fraction(this->numerator * fraction.numerator,
+	Fraction result(this->numerator * fraction.numerator,
 					this->denominator * fraction.denominator);
+
+	result.simplify();
+
+	return result;
 }
 
 Fraction Fraction::operator*(const int& integer) {
-	return Fraction(this->numerator * integer,
+	Fraction result(this->numerator * integer,
 					this->denominator);
+
+	result.simplify();
+
+	return result;
 }
 
 Fraction Fraction::operator/(const Fraction& fraction) {
 	this->checkDivisionByZero(fraction, fraction.numerator);
 
-	return Fraction(this->numerator * fraction.denominator,
+	Fraction result(this->numerator * fraction.denominator,
 					this->denominator * fraction.numerator);
+
+	result.simplify();
+
+	return result;
 }
 
 Fraction Fraction::operator/(const int& integer) {
 	this->checkDivisionByZero(Fraction::ZERO, integer);
 
-	return Fraction(this->numerator,
+	Fraction result(this->numerator,
 					this->denominator * integer);
+
+	result.simplify();
+
+	return result;
 }
 
 bool Fraction::operator==(const Fraction& fraction) {
@@ -148,6 +211,24 @@ int Fraction::lcm(int a, int b) const {
     int gcd = this->gcd(a, b);
 
     return gcd ? (a / gcd * b) : 0;
+}
+
+int Fraction::mantissaToInteger(float mantissa, int& n) const {
+	n = 0;
+
+	while(mantissa != (int) mantissa) {
+		mantissa *= 10;
+		n += 1;
+	}
+
+	return mantissa;
+}
+
+void Fraction::simplify() {
+	int gcd = this->gcd(this->numerator, this->denominator);
+	
+	this->numerator /= gcd;
+	this->denominator /= gcd;
 }
 
 const std::string Fraction::toString() const {

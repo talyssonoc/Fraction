@@ -45,6 +45,12 @@ int main() {
 	Fraction result9 = -f1;
 	std::cout << "-(" << f1 << ") = " << result9 << std::endl;
 
+	Fraction result10(2.5f);
+	std::cout << "2.5 = " << result10 << std::endl;
+
+	Fraction result11(3.141592653589f);
+	std::cout << "PI = " << result11 << std::endl;
+
 	if(f1 == f2) {
 		std::cout << f1 << " == " << f2 << std::endl;
 	}

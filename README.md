@@ -55,7 +55,7 @@
 
 # TODO
 
-* [ ] Fraction(float) constructor
+* [x] Fraction(float) constructor
 * [x] Multiplication by Fraction
 * [x] Multiplication by int
 * [x] Division by Fracton
@@ -67,7 +67,7 @@
 * [x] Subtraction by Fraction
 * [x] Subtraction by int
 * [x] Negative
-* [ ] Normalizer (reduce fraction)
+* [x] Simplify fraction
 * [x] == with Fraction
 * [x] == with Integer
 * [?] == with Float
