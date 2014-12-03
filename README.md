@@ -89,3 +89,11 @@
 * [x] Constant ZERO
 * [x] Constant ONE
 * [x] Change names from dividend/divisor to numerator/denominator
+
+# Utils
+
+Links for Fraction(float|double) constructor:
+
+* http://c2.com/cgi/wiki?ContinuedFractions
+* http://math.stackexchange.com/questions/1049699/how-to-extract-fraction-from-a-floating-point-number/
+* http://mathworld.wolfram.com/SimpleContinuedFraction.html
