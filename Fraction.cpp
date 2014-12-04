@@ -56,7 +56,7 @@ Fraction::Fraction(float number) {
 	mantissa = frexp(number , &exponent);
 
 	// E.g. turns 0.123 into 123
-	numerator = this->mantissaToInteger(mantissa, denominator);
+	numerator = this->mantissaToInteger(mantissa, &denominator);
 
 	h = min(denominator, exponent);
 
@@ -233,12 +233,12 @@ int Fraction::lcm(int a, int b) const {
     return gcd ? (a / gcd * b) : 0;
 }
 
-int Fraction::mantissaToInteger(float mantissa, int& n) const {
-	n = 0;
+int Fraction::mantissaToInteger(float mantissa, int* n) const {
+	*n = 0;
 
 	while(mantissa != (int) mantissa) {
 		mantissa *= 10;
-		n += 1;
+		*n += 1;
 	}
 
 	return mantissa;

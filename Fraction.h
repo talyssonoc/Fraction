@@ -81,7 +81,7 @@ private:
 	void checkDivisionByZero(const Fraction&, int) const;
 	int gcd(int, int) const;
 	int lcm(int, int) const;
-	int mantissaToInteger(float, int&) const;
+	int mantissaToInteger(float, int*) const;
 	void simplify();
 
 	// Generic functional comparator
