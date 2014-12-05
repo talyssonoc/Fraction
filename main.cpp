@@ -36,6 +36,7 @@ int main() {
 	std::cout << f1 << " + " << i4 << " = " << result6 << std::endl;
 
 	Fraction result7 = f1 - f2;
+	std::cout << "sub" << std::endl;
 	std::cout << f1 << " - " << f2 << " = " << result7 << std::endl;
 
 	int i5 = 11;
@@ -45,8 +46,8 @@ int main() {
 	Fraction result9 = -f1;
 	std::cout << "-(" << f1 << ") = " << result9 << std::endl;
 
-	Fraction result10(2.5f);
-	std::cout << "2.5 = " << result10 << std::endl;
+	Fraction result10(-2.5f);
+	std::cout << (-2.5f) << " = " << result10 << std::endl;
 
 	Fraction result11(3.141592653589f);
 	std::cout << "PI = " << result11 << std::endl;

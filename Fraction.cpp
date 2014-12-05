@@ -11,10 +11,6 @@ Fraction::Fraction(int numerator) {
 }
 
 Fraction::Fraction(int numerator, int denominator) {
-	if(denominator < 0) {
-		numerator = -numerator;
-		denominator = -denominator;	
-	}
 
 	this->numerator = numerator;
 	this->denominator = denominator;
@@ -249,6 +245,11 @@ void Fraction::simplify() {
 	
 	this->numerator /= gcd;
 	this->denominator /= gcd;
+
+	if(this->denominator < 0) {
+		this->numerator = -this->numerator;
+		this->denominator = -this->denominator;
+	}
 }
 
 const std::string Fraction::toString() const {
